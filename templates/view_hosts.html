@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Property Host</title>
+</head>
+<body class="body_view_bookings">
+    {% include 'admin_head.html' %}
+
+    <div class="mt-30 text-center">
+        <h1>View Properties Host</h1>
+        <div class="m-50">
+            <table border="1" class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for host in hosts %}
+                    <tr>
+                        <td>{{host['first_name']}}</td>
+                        <td>{{host['last_name']}}</td>
+                        <td>{{host['email']}}</td>
+                        <td>{{host['phone']}}</td>
+                        {% if host['status']=="Active" %}
+                            <td class="color-green">{{host['status']}}</td>
+                        {% else %}
+                            <td class="color-danger">{{host['status']}}</td>
+                        {% endif %}
+                        <td>
+                            {% if host['status']=="Not Active" %}
+                                <a class="btn-green" href="verify_host?property_host_id={{host['_id']}}">Active Now</a>
+                            {% else %}
+                                <a class="btn-danger" href="un_verify_host?property_host_id={{host['_id']}}">Deactivate Now</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

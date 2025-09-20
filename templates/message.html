@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+</head>
+<body>
+    {% if session['role']=="Customer" %}
+        {% include 'customer_head.html' %}
+    {% elif session['role'] == "Host" %}
+        {% include 'hosts_head.html' %}
+    {% else %}
+        {% include 'head.html' %}
+    {% endif %}
+
+  <h1 class="text-center mt-150 color-danger">{{message}}</h1>
+  <h1 class="text-center mt-150">{{message1}}</h1>
+</body>
+</html>

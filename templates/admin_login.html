@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+</head>
+<body class="body_admin_login">
+{% include 'head.html' %}
+
+    <div class="row">
+        <div class="col-7"></div>
+        <div class="col-4 mt-150">
+            <div class="card p-20" style="background-color: rgba(137, 218, 255, 0.3);">
+                <div class="mt-5 text-center">
+                    <h2>Admin Login</h2>
+                </div>
+                <form action="admin_login_action" method="post">
+                    <div class="mt-10">
+                        <label for="username">Username</label>
+                        <div class="mt-5 ">
+                            <input type="text" class="input-class" name="username" id="username" placeholder="Enter Username" required>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <label for="password">Password</label>
+                        <div class="mt-5">
+                            <input type="password" class="input-class" name="password" id="password" placeholder="Enter Password" required>
+                    </div>
+                    <div>
+                        <input type="submit" class="submit-btn p-5 mt-20" value="Login">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</body>
+</html>

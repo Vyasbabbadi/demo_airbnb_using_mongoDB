@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payments</title>
+</head>
+<body>
+    {% include 'customer_head.html' %}
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 mt-50">
+            <div class="card_plain p-10">
+                <h3 class="text-center">Payment</h3>
+                <form action="payment_action" method="post">
+                    <input type="hidden" name="booking_id" value="{{booking_id}}" id="booking_id">
+                    <input type="hidden" name="payable_amount" class="input-class" value="{{payable_amount}}" id="payable_amount">
+                    <input type="hidden" name="days" value="{{days}}">
+                    <div class="mt-10">
+                        <label for="card_number">Card Number</label>
+                        <div class="mt-5">
+                            <input type="number" class="input-class" name="card_number" id="card_number" maxlength="16" required placeholder="Enter Card Number">
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <label for="holder_name">Name</label>
+                        <div class="mt-5">
+                            <input type="text" class="input-class" name="holder_name" id="holder_name" required placeholder="Enter Card Holder Name">
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <label for="expire_date">Expire Date</label>
+                        <div class="mt-5">
+                            <input type="month" class="input-class" min="{{date}}" name="expire_date" id="expire_date" required>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <label for="cvv">CVV</label>
+                        <div class="mt-5">
+                            <input type="number" class="input-class" max="999" name="cvv" id="cvv" placeholder="Enter CVV number" required>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <label for="expire_date">Amount</label>
+                        <div class="mt-5">
+                            <div class="input-class">${{payable_amount}}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" class="submit-btn p-5 mt-20" value="Make Payment">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>
+</html>

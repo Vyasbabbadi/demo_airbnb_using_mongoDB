@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Properties</title>
+</head>
+<body class="body_add_property">
+    {% include 'hosts_head.html' %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6 mt-15">
+            <div class="card p-10">
+                <h3 class="text-center color-white">Add Property</h3>
+
+                    <div class="row">
+                        <div class="col-5 m-10">
+                            <div>
+                                <form action="add_properties">
+                                    <label for="location_id" class="color-white">Location</label>
+                                    <div class="mt-5">
+                                        <select id="location_id" name="location_id" class="input-class" onchange="this.form.submit()">
+                                            <option selected disabled>Please Select a Location</option>
+                                            {% for location in locations %}
+                                                <option value="{{location['_id']}}" {% if str(location['_id'])==str(location_id)%} selected {% endif %}>{{location['location_name']}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="location_id" class="color-white">State</label>
+                                <div class="mt-5">
+                                    <select id="location_id" name="location_id" class="input-class">
+                                        <option selected disabled>Please Select a State</option>
+                                        {% for location in locations %}
+                                            <option value="{{location['_id']}}" {% if str(location['_id'])==str(location_id)%} selected {% endif %}>{{location['state_name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-5 m-10">
+                            <div>
+                                <label for="location_id" class="color-white">Location</label>
+                                <div class="mt-5">
+                                    <select id="location_id" name="location_id" class="input-class">
+                                        <option selected disabled>Please Select a Location</option>
+                                        {% for location in locations %}
+                                            <option value="{{location['_id']}}">{{location['location_name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="category_id" class="color-white">State</label>
+                                <div class="mt-5">
+                                    <select id="category_id" name="category_id" class="input-class">
+                                        <option selected disabled>Please Select a State</option>
+                                        {% for state in states %}
+                                            <option value="{{state['_id']}}">{{state['state_name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="location_id" class="color-white">Zipcode</label>
+                                <div class="mt-5">
+                                    <select id="location_id" name="location_id" class="input-class">
+                                        <option selected disabled>Please Select a Zipcode</option>
+                                        {% for zipcode in zipcodes %}
+                                            <option value="{{zipcode['_id']}}">{{zipcode['zipcode']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                <form action="add_property_action" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="location_id" class="color-white">Zipcode</label>
+                                <div class="mt-5">
+                                    <select id="location_id" name="location_id" class="input-class">
+                                        <option selected disabled>Please Select a Zipcode</option>
+                                        {% for location in locations %}
+                                            <option value="{{location['_id']}}" {% if str(location['_id'])==str(location_id)%} selected {% endif %}>{{location['zipcode']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="category_id" class="color-white">Category</label>
+                                <div class="mt-5">
+                                    <select id="category_id" name="category_id" class="input-class">
+                                        <option selected disabled>Please Select a Category</option>
+                                        {% for category in categories %}
+                                            <option value="{{category['_id']}}">{{category['categories_name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="properties_name" class="color-white">Name</label>
+                                <div class="mt-5">
+                                    <input type="text" class="input-class" name="properties_name" id="properties_name" placeholder="Enter Property Name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="properties_detail" class="color-white">Property Details</label>
+                                <div class="mt-5 ">
+                                    <input type="text" class="input-class" name="properties_detail" id="properties_detail" placeholder="Enter Property Details" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 m-10">
+                            <div>
+                                <label class="color-white" for="area_occupied">Dimensions Of Room</label>
+                                <div class="mt-5">
+                                    <input type="text" class="input-class" name="area_occupied" id="area_occupied" placeholder="Enter Dimensions of Room" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="rent_per_day" class="color-white">Rent Per Day</label>
+                                <div class="mt-5">
+                                    <input type="number" class="input-class" name="rent_per_day" id="rent_per_day" placeholder="Enter Price" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="services" class="color-white">Services</label>
+                                <div class="mt-5">
+                                    <input type="text" class="input-class" name="services" id="services" placeholder="Enter Services" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 m-10">
+                            <div>
+                                <label for="service_charges" class="color-white">Service Charges</label>
+                                <div class="mt-5">
+                                    <input type="number" class="input-class" name="service_charges" id="service_charges" placeholder="Enter Service Charges Price" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-10">
+                        <label class="color-white" for="picture_of_property">Picture of Property</label>
+                        <div class="mt-5">
+                            <input type="file" class="input-class" name="picture_of_property" id="picture_of_property" required>
+                        </div>
+                    </div>
+                    <div class=" m-10">
+                        <label for="property_address" class="color-white">Address</label>
+                        <div class="mt-5">
+                            <textarea class="input-class" name="property_address" id="property_address" required placeholder="Enter Your Address"></textarea>
+                        </div>
+                    </div>
+                    <div class="m-10">
+                        <input type="submit" class="submit-btn p-5 mt-10" value="Add Property">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body> 
+</html>

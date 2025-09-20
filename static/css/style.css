@@ -1,0 +1,617 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:root {
+    --color-primary: #003580;
+    --color-primary-lite: #265CBF;
+    --color-secondary:  #008080;
+    --color-secondary-lite: #66CDAA;
+    --color-info: #EDE8F5;
+    --color-danger: #cc0000;
+    --color-danger-lite: #ff3333;
+    --color-gray:  #737373;
+    --color-gray-lite: #cccccc;
+    --color-lighter-grey: #d8d8d8;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-dark-green: #144714;
+    --color-green: #00cc00;
+    --transition: all 0.4s ease;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-1{
+    width: calc(100%/12*1);
+}
+
+.col-2 {
+    width: calc(100%/12*2);
+}
+
+.col-3 {
+    width: calc(100%/12*3);
+}
+
+.col-4 {
+    width: calc(100%/12*4);
+}
+
+.col-5 {
+    width: calc(100%/12*5);
+}
+
+.col-6 {
+    width: calc(100%/12*6);
+}
+
+.col-7 {
+    width: calc(100%/12*7);
+}
+
+.col-8 {
+    width: calc(100%/12*8);
+}
+
+.col-9 {
+    width: calc(100%/12*9);
+}
+
+.col-10 {
+    width: calc(100%/12*10);
+}
+
+.col-11 {
+    width: calc(100%/12*11);
+}
+
+.col-12 {
+    width: calc(100%/12*12);
+}
+
+.p-5 {
+    padding: 5px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.p-15 {
+    padding: 15px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.p-25 {
+    padding: 25px;
+}
+
+.p-30 {
+    padding: 30px;
+}
+
+.p-35 {
+    padding: 35px;
+}
+
+.p-40 {
+    padding: 40px;
+}
+
+.p-50 {
+    padding: 50px;
+}
+
+.p-60 {
+    padding: 60px;
+}
+
+.p-70 {
+    padding: 70px;
+}
+
+.p-80 {
+    padding: 80px;
+}
+
+.p-90 {
+    padding: 90px;
+}
+
+.p-100 {
+    padding: 100px;
+}
+
+.pl-5{
+    padding-left: 5px;
+}
+
+.pl-10{
+    padding-left: 10px;
+}
+
+.pl-15{
+    padding-left: 15px;
+}
+
+.pl-20{
+    padding-left: 20px;
+}
+
+.pl-35{
+    padding-left: 35px;
+}
+
+.pr-10{
+    padding-right: 10px;
+}
+
+.pd-20{
+    padding-bottom: 20px;
+}
+
+.m-10 {
+    margin: 10px;
+}
+
+.m-20{
+    margin: 20px;
+}
+
+.m-50{
+    margin: 50px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mt-55 {
+    margin-top: 55px;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.mt-70 {
+    margin-top: 70px;
+}
+
+.mt-80 {
+    margin-top: 80px;
+}
+
+.mt-90 {
+    margin-top: 90px;
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+.mt-120 {
+    margin-top: 120px;
+}
+
+.mt-150{
+    margin-top: 150px;
+}
+
+.mt-200{
+    margin-top: 200px;
+}
+
+.mt-300{
+    margin-top: 300px;
+}
+
+.color-white{
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.color-primary{
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.color-primary-lite{
+    color: var(--color-primary-lite);
+}
+
+.color-secondary{
+    color: var(--color-dark-green);
+}
+
+.color-secondary-lite{
+    color: var(--color-secondary-lite);
+}
+
+.color-danger{
+    color: var(--color-danger);
+    font-weight: bold;
+}
+
+.color-green{
+    color: var(--color-dark-green);
+    font-weight: bold;
+}
+
+.color-lightgreen{
+    color: var(--color-green);
+    font-weight: bold;
+}
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: whitesmoke;
+}
+
+tr th{
+    text-align: center;
+    padding: 5px;
+    height: 40px;
+    background: var(--color-secondary)
+}
+
+th {
+    color: var(--color-white);
+}
+
+tr td{
+    text-align: center;
+    padding: 5px;
+    height: 50px;
+}
+
+.table_image{
+    height: 100px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.nav{
+    background-color: rgba(0, 0, 0, .1);
+    box-shadow: 0 0 5px black;
+}
+
+.nav-items{
+    color: var(--color-black);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-item{
+    color: var(--color-black);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+    background-color: var(--color-danger);
+    border-radius: 6px;
+}
+
+.nav-items:hover{
+    color: var(--color-white);
+    background-color: var(--color-primary-lite);
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.nav-item:hover{
+    color: var(--color-white);
+    background-color: var(--color-danger);
+    border: 1px solid var(--color-danger-lite);
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.nav-items.active {
+    color: var(--color-white);
+    background-color: var(--color-primary-lite);
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.card{
+    border-radius: 14px;
+    width: 70%;
+    margin: auto;
+    transition: var(--transition);
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.card_plain{
+    width: 80%;
+    margin:10px auto;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.card_view{
+    width: 90%;
+    margin: 30px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, .1);
+    border-radius: 14px;
+}
+
+.card_view_booking{
+    position: relative;
+    width: 90%;
+    margin: 30px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, .1);
+    border-radius: 14px;
+}
+
+.card_view_properties{
+    position: relative;
+    width: 90%;
+    margin: 30px auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 14px;
+}
+
+.card_footer{
+    position: absolute;
+    bottom: 15px;
+    width: 90%;
+}
+
+.tab_convo{
+    position: absolute;
+    bottom: 10px;
+    width: 85%;
+}
+
+.input-group{
+    position: relative;
+}
+
+.input-icon{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.input-group > .input-class{
+    padding-left: 25px;
+} 
+
+.input-class{
+    border: 0px;
+    width: 100%;
+    padding: 5px;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    border-bottom: 3px solid black;
+}
+
+.input-class:hover {
+    border-bottom: 3px solid var(--color-secondary);
+}
+
+.input-class:focus {
+    outline: none;
+}
+
+.input-field{
+    border: 0px;
+    width: 100%;
+    padding: 5px;
+    background-color: var(--color-white);
+    border-radius: 8px;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.submit-btn {
+    background-image: linear-gradient(to right, #1e3c72 0%, #2a5298  51%, #1e3c72  100%)
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border: 0px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;           
+    border-radius: 10px;
+    display: block;
+ }
+
+.submit-btn:hover {
+   background-position: right center;
+   color: var(--color-white);
+   text-decoration: underline;
+}
+
+.btn-green{
+    text-decoration: none;
+    background-color: var(--color-green);
+    padding: 5px;
+    border-radius: 6px;
+    color: var(--color-dark-green);
+    font-weight: bold;
+}
+
+.btn-danger{
+    text-decoration: none;
+    background-color: var(--color-danger-lite);
+    padding: 5px;
+    border-radius: 6px;
+    color: black;
+    font-weight: bold;
+}
+
+.customer_img{
+    padding: 0px;
+    position: relative;
+}
+
+.customer_form{
+    position: absolute;
+    bottom: 200px;
+    left: 200px;
+    width: 75%;
+    background-color: var(--color-white);
+    border-radius: 14px;
+}
+
+.body_customer_registration{
+    background-image: url(../images/customer_registration.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 725px;
+}
+
+.body_customer_login{
+    background-image: url(../images/customer_login.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 800px;
+}
+
+.body_booking{
+    background-image: url(../images/reservation.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 725px;
+}
+
+.body_customer_home{
+    background-image: url(../images/customer_home.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 725px;
+}
+
+.body_host_login{
+    background-image: url(../images/host_login.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 725px;
+}
+
+.body_admin_login{
+    background-image: url(../images/admin_login.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 725px;
+}
+
+.img_home_page{
+    background-image: url(../images/home_page.png);
+    height: 400px;
+}
+
+.body_view_properties{
+    background: #D3CCE3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 100%;
+    height: auto;
+}
+
+.body_host_home{
+    background-image: url(../images/host_home.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 725px;
+}
+
+.body_add_property{
+    background-image: url(../images/add_property.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 725px;
+}
+
+.body_view_bookings{
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.body_admin_home{
+    background-image: url(../images/admin_home.png);
+}

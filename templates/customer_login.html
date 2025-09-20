@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Login</title>
+</head>
+<body class="body_customer_login">
+{% include 'head.html' %}
+    <div class="row">
+        <div class="col-4 mt-150" style="padding-left: 30px;">
+            <div class="card p-20">
+                <div class="mt-5 text-center">
+                    <h2>Customer Login</h2>
+                </div>
+                <form action="customer_login_action" method="post">
+                    <div class="mt-10">
+                        <label for="email">Email</label>
+                        <div class="mt-5">
+                            <input type="text" class="input-class" name="email" id="email" placeholder="Enter Email Id" required>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <label for="password">Password</label>
+                        <div class="mt-5">
+                            <input type="password" class="input-class" name="password" id="password" placeholder="Enter Password" required>
+                    </div>
+                    <div>
+                        <input type="submit" class="submit-btn p-5 mt-20" value="Login">
+                    </div>
+                </form>
+                <div class="mt-10">
+                    Didn't have an account? <a class="color-primary" style="font-weight: bold; font-size: 18px;" href="customer_registration">Register Here!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>
+</html>

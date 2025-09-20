@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review</title>
+</head>
+<body class="body_review">
+    {% if session['role']=="Host" %}
+        {% include 'hosts_head.html' %}
+    {% elif session['role']=="Customer" %}
+        {% include 'customer_head.html' %}
+    {% endif %}
+
+    <h2 class="text-center mt-30">Review</h2>
+    <div class="row">
+        {% if session['role']=="Customer" %}
+            <div class="col-4"></div>
+            <div class="col-4 mt-100">
+                <div class="card p-10">
+                    <form action="review_action" method="post">
+
+                        <input type="hidden" value="{{booking_id}}" name="booking_id" id="booking_id">
+                        <div class="mt-10">
+                            <label for="rating">Rating</label>
+                            <div>
+                                <select class="input-class" name="rating" id="rating" required>
+                                    <option selected="selected" disabled value="">Please Select a Rating</option>
+                                    <option value="5">5</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <label for="review">Review</label>
+                            <div>
+                                <textarea class="input-class" name="review" id="review" placeholder="Review for Booking" required></textarea>
+                            </div>
+                        </div>
+                        <input type="submit" class="submit-btn p-5 mt-20" value="Add Review">
+                    </form>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        {% elif session['role']=="Host" %}
+            <div class="col-1"></div>
+            <div class="col-10 p-10 mt-20">
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Rating</th>
+                            <th>Review</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for review in reviews %}
+                        <tr>
+                            <td>{{review['rating']}}</td>
+                            <td>{{review['review']}}</td>
+                            <td>{{review['date'].strftime("%Y-%m-%d %I:%M %p")}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-1"></div>
+        {% endif %}
+    </div>
+</body>
+</html>

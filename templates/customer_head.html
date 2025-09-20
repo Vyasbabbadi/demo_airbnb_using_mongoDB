@@ -1,0 +1,14 @@
+{% include 'link.html' %}
+
+<nav class="row nav p-10">
+    <div class="col-4 row">
+        <a href="/logout" style="padding-left: 50px;"><img src="../static/images/logo.png" alt="logo" height="40px"></a>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-4 row">
+        <div class="col-2 mt-10"><a class="nav-items {% if request.path == '/customer_home' %}active{% elif request.path == '/customer_login_action' %}active{% endif %}" href="/customer_home">Home</a></div>
+        <div class="col-4 mt-10"><a class="nav-items {% if request.path == '/view_properties' %}active{% elif request.path == '/booking' %}active{% endif %}" href="/view_properties">View Properties</a></div>
+        <div class="col-4 mt-10"><a class="nav-items {% if request.path == '/view_bookings' %}active{% elif request.path == '/conversation' %}active{% elif request.path == '/view_payments' %}active{% elif request.path == '/review_bookings' %}active{% endif %}" href="/view_bookings">View Bookings</a></div>
+        <div class="col-2 mt-10 text-left"><a class="nav-item active" href="/logout">Logout</a></div>
+    </div>
+</nav>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversation</title>
+</head>
+<body style="background-color: lightgray;">
+    {% if session['role']=="Customer" %}
+        {% include 'customer_head.html' %}
+    {% elif session['role'] == "Host" %}
+        {% include 'hosts_head.html' %}
+    {% endif %}
+    
+    <h1 class="text-center mt-30">Conversation</h1>
+    <div style="padding-left: 100px; padding-right: 100px;">
+        <div class="row p-10 card_plain" style="background-color: whitesmoke;">
+            <div class="col-4">
+                <div class="card_plain p-10">
+                    <form action="add_conversation" method="post">
+                        <input type="hidden" value="{{booking_id}}" name="booking_id" id="booking_id">
+                        <div class="mt-10">
+                            <label for="message">Message</label>
+                            <div class="mt-10">
+                                <input type="text" class="input-class" name="message" id="message" required placeholder="Enter Message to Send">
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn p-5 mt-20" value="Send">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-8 p-10">
+                <div class="card p-20">
+               {% for msg in booking['conversation'] %}
+                    <div class="row">
+                        {% if msg['message_from_role']=='host'%}
+                            {% set message_by=get_host_by_host_id(msg['message_by'])%}
+                        {% else%}
+                            {% set message_by=get_customer_by_customer_id(msg['message_by'])%}
+                        {% endif%}
+                        <div class="col-6">
+                            <div class="" style="font-size:12px"> Message_by :</div>
+                            <b style="font-size:14px">{{message_by['first_name']}}({{message_by['phone']}})</b>
+                        </div>
+                         <div class="col-6">
+                           <div class="" style="font-size:12px">Date</div>
+                             <b style="font-size:14px">{{msg['date'].strftime("%Y-%m-%d %I:%M %p")}}</b>
+                         </div>
+                        <div class="mt-5" style="font-size:12px">Message</div>
+                        <div class="mt-20">{{msg['message']}}</div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

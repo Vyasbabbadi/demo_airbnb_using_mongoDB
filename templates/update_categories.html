@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Category</title>
+</head>
+<body>
+    {% include 'admin_head.html' %}
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card-plain">
+                <h3 class="text-center">Update Category</h3>
+                    <form class="m-20" action="update_category_action" method="post">
+                        <div class="mt-10">
+                            <label for="category">Category</label>
+                            <div class="mt-10">
+                                <input type="text" class="input-class" style="padding: 10px;" name="category" id="category" placeholder="Enter Category Name" required>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn mt-20" value="Add Category">
+                        </div>
+                    </form>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>
+</html>

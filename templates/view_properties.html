@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Properties</title>
+</head>
+{% if session['role']=="Host" %}
+    <body class="body_view_properties">
+{% elif session['role']=="Admin" %}
+    <body class="body_view_bookings">
+{% else %}
+    <body style="background-color: rgb(224, 224, 224);">
+{% endif %}
+    {% if session['role']=="Admin" %}
+        {% include 'admin_head.html' %}
+    {% elif session['role']=="Host" %}
+        {% include 'hosts_head.html' %}
+    {% elif session['role']=="Customer" %}
+        {% include 'customer_head.html' %}
+    {% endif %}
+
+    
+
+    <div class="row">
+        {% if session['role']!="Customer" %}
+            <div class="col-1"></div>
+        {% endif %}
+        <div class="col-10">
+            {% if session['role'] == "Admin" %}
+                <h1 class="text-center mt-30">View Properties</h1>
+                <form action="view_properties">
+                    
+                    <div class="row mt-20">
+                        <div class="col-3 p-10">
+                            <select name="category_id" id="category_id" class="input-class" onchange="this.form.submit()">
+                                <option value="" selected disabled>Select a Category</option>
+                                {% for category in categories %}
+                                <option value="{{category['_id']}}" {% if str(category['_id'])==str(category_id) %} selected {% endif %}>{{category['categories_name']}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-3 p-10">
+                            <select name="location_id" id="location_id" class="input-class" onchange="this.form.submit()">
+                                <option value="" selected disabled>Select a Location</option>
+                                {% for location in locations %}
+                                <option value="{{location['_id']}}"{% if str(location['_id'])==str(location_id) %} selected {% endif %}>{{location['location_name']}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-3 p-10">
+                            <input type="text" name="host_first_name" class="input-class" id="host_first_name"  onchange="this.form.submit()" placeholder="Enter Host Name" >
+                        </div>
+                        <div class="col-3 p-10">
+                            <input type="text" name="properties_name" class="input-class" id="properties_name"  onchange="this.form.submit()" placeholder="Enter property Name" >
+                        </div>
+                    </div>
+                </form>
+            {% elif session['role'] == "Customer" %}
+                <div class="customer_img">
+                    <img src="../static/images/customer_page.png" style="height: 458px; margin: 0; padding: 0; box-sizing: border-box;" alt="img">
+                </div>
+                <div class="customer_form">
+                    <form action="view_properties">
+                        <div class="row">
+                            <div class="col-3 p-10">
+                                <select name="category_id" id="category_id" class="input-field" onchange="this.form.submit()">
+                                    <option value="" selected disabled>Select a Category</option>
+                                    {% for category in categories %}
+                                    <option value="{{category['_id']}}" {% if str(category['_id'])==str(category_id) %} selected {% endif %}>{{category['categories_name']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-3 p-10">
+                                <select name="location_id" id="location_id" class="input-field" onchange="this.form.submit()">
+                                    <option value="" selected disabled>Select a Location</option>
+                                    {% for location in locations %}
+                                    <option value="{{location['_id']}}"{% if str(location['_id'])==str(location_id) %} selected {% endif %}>{{location['location_name']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-3 p-10">
+                                <input type="text" name="properties_name" class="input-field" id="properties_name" placeholder="Enter property Name" >
+                            </div>
+                            <div class="col-3" style="padding: 8px;">
+                                <input type="submit" value="Search" class="submit-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            {% elif session['role'] == "Host" %}
+                <h1 class="text-center mt-30">View Properties</h1>
+                <div style="background-color: whitesmoke; border-radius: 14px;">
+                    <form action="view_properties">
+                        <div class="row mt-20">
+                            <div class="col-3 p-10">
+                                <select name="category_id" id="category_id" class="input-class" onchange="this.form.submit()">
+                                    <option value="" selected disabled>Select a Category</option>
+                                    {% for category in categories %}
+                                    <option value="{{category['_id']}}" {% if str(category['_id'])==str(category_id) %} selected {% endif %}>{{category['categories_name']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-3 p-10">
+                                <select name="location_id" id="location_id" class="input-class" onchange="this.form.submit()">
+                                    <option value="" selected disabled>Select a Location</option>
+                                    {% for location in locations %}
+                                    <option value="{{location['_id']}}"{% if str(location['_id'])==str(location_id) %} selected {% endif %}>{{location['location_name']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-3 p-10">
+                                <input type="text" name="properties_name" class="input-class" id="properties_name" placeholder="Enter property Name" >
+                            </div>
+                            <div class="col-3" style="padding: 8px;">
+                                <input type="submit" value="Search" class="submit-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <div style="padding-left: 100px; padding-right: 100px;">
+    {% if session['role']=="Admin" %}
+        <div class="row">
+            {% for property in properties %}
+            {% set category = get_category_by_category_id(property['category_id']) %}
+            {% set location = get_location_by_location_id(property['location_id']) %}
+            <div class="col-4">
+                <div class="card_plain p-10" style="margin-top: 20px; background-color: whitesmoke;">
+                    <div class="text-center mt-10">
+                        <img class="table_image" style="height: 150px;" src="../static/property_images/{{property['picture_in_property']}}">
+                    </div>
+                    <div class="text-center">
+                        <h3 style="display: inline-block;">{{property['properties_name']}}, </h3> <h4 style="display: inline-block;">{{location['location_name']}}</h4><br>
+                        Rent Per Day : <h4 style="display: inline-block;"> $ {{property['rent_per_day']}}</h4>
+                    </div>
+                    <div class=" p-10 pl-20">
+                        <h5 class="mt-5" style="display: inline-block;"> Host Name: </h5> {{property['host_first_name']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Category: </h5> {{category['categories_name']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Details: </h5> {{property['properties_detail']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Services Provided: </h5> {{property['services']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Area Occupied: </h5> {{property['area_occupied']}}
+                        <br>
+                    </div>
+                    <div class="text-center">
+                        {% if property['status']=="Approved" %}
+                            <h3 class="color-lightgreen">{{property['status']}}</h3>
+                        {% else %}
+                            <h3 class="color-danger">{{property['status']}}</h3>
+                        {% endif %}
+                    </div>
+                    <div class="p-15">
+                        {% if property['status']=="Not Approved" %}
+                            <a class=" submit-btn" href="verify_property?property_id={{property['_id']}}">Approve Now</a>
+                        {% else %}
+                            <a class=" submit-btn" href="un_verif_property?property_id={{property['_id']}}">Deny Now</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% elif session['role']=="Host" %}
+        <div class="row">
+            {% for property in properties %}
+            {% set category = get_category_by_category_id(property['category_id']) %}
+            {% set location = get_location_by_location_id(property['location_id']) %}
+            <div class="col-4">
+                <div class="card_plain p-10" style="margin-top: 20px; background-color: whitesmoke;">
+                    <div class="text-center mt-10">
+                        <img class="table_image" style="height: 150px;" src="../static/property_images/{{property['picture_in_property']}}">
+                    </div>
+                    <div class="text-center">
+                        <h3 style="display: inline-block;">{{property['properties_name']}}, </h3> <h4 style="display: inline-block;">{{location['location_name']}}</h4><br>
+                        Rent Per Day : <h4 style="display: inline-block;"> $ {{property['rent_per_day']}}</h4>
+                    </div>
+                    <div class=" p-10 pl-20">
+                        <h5 class="mt-5" style="display: inline-block;"> Host Name: </h5> {{property['host_first_name']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Category: </h5> {{category['categories_name']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Details: </h5> {{property['properties_detail']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Services Provided: </h5> {{property['services']}}
+                        <br>
+                        <h5 class="mt-5" style="display: inline-block;"> Area Occupied: </h5> {{property['area_occupied']}}
+                        <br>
+                    </div>
+                    <div class="text-center">
+                        {% if property['status']=="Approved" %}
+                            <h3 class="color-lightgreen">{{property['status']}}</h3>
+                        {% else %}
+                            <h3 class="color-danger">{{property['status']}}</h3>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% elif session['role']=="Customer" %}
+        <div class="row">
+            {% for property in properties %}
+            {% set category = get_category_by_category_id(property['category_id']) %}
+            {% set location = get_location_by_location_id(property['location_id']) %}
+                {% if property['status']=="Approved" %}
+                    <div class="col-4">
+                        <div class="card_view_properties p-10" style="margin-top: 20px; height: 430px; background-color: whitesmoke;">
+                            <div class="text-center mt-10">
+                                <img class="table_image" style="height: 150px;" src="../static/property_images/{{property['picture_in_property']}}">
+                            </div>
+                            <div class="text-center">
+                                <h3 class="mt-10" style="display: inline-block;">{{property['properties_name']}}, </h3> <h4 style="display: inline-block;">{{location['location_name']}}</h4><br>
+                                Rent Per Day : <h4 style="display: inline-block;"> $ {{property['rent_per_day']}}</h4> <br>
+                                <h4 class="mt-5">{{property['properties_detail']}}</h4>
+                                <h5 class="mt-5" style="display: inline-block;"> Category: </h5> {{category['categories_name']}}
+                            </div>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-10 p-10">
+                                    <div class="mt-5">
+                                        <h4 style="display: inline-block;">Area Available :</h4>
+                                        {{property['area_occupied']}}
+                                    </div>
+                                    <div class="mt-5">
+                                        <h4 style="display: inline-block;">Services Provided :</h4>
+                                        {{property['services']}}
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                            </div>
+                            <div class="card_footer">
+                                <div class="row">
+                                    <div class="col-6"></div>
+                                    <div class="col-6 mt-10">
+                                        <a href="/booking?property_id={{property['_id']}}&host_id={{property['host_id']}}&amount={{property['rent_per_day']}}" class="submit-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %} 
+    </div>   
+</body>
+</html>

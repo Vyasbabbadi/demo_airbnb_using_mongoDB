@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Category</title>
+</head>
+<body class="body_view_bookings">
+    {% include 'admin_head.html' %}
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 mt-150">
+            <div class="card p-10">
+                <form action="update_category_action" method="post">
+                    <h3 class="text-center mt-10">Update Category Details</h3>
+                    <input type="hidden" name="category_id" id="category_id" value="{{category['_id']}}">
+                    <div class="mt-10 p-10">
+                        <label for="category">Category</label>
+                        <div class="mt-10">
+                            <input type="text" class="input-class" style="padding: 10px;" name="category" id="category" value="{{category['categories_name']}}" required>
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <input type="submit" class="submit-btn mt-10" value="Update Category">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>
+</html>

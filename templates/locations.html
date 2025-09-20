@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Locations</title>
+</head>
+<body class="body_view_bookings">
+    {% include 'admin_head.html' %}
+    <h1 class="text-center mt-30">Locations</h1>
+    <div class="mt-30">
+        <div class="card_plain" style="padding-left: 100px;">
+            <div class="row">
+                <div class="col-3 p-10 m-20">
+                    <h3 class="text-center">Add Location</h3>
+                    <form action="add_location_action" method="post">
+                        <div class="mt-10">
+                            <label for="location_name">City</label>
+                            <div class="mt-5">
+                                <input type="text" style="padding: 10px;" class="input-class" name="location_name" id="location_name" placeholder="Enter City Name" required>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <label for="state_name">State</label>
+                            <div class="mt-5">
+                                <input type="text" style="padding: 10px;" class="input-class" name="state_name" id="state_name" placeholder="Enter State Name" required>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <label for="zipcode">Zipcode</label>
+                            <div class="mt-5">
+                                <input type="number" style="padding: 10px;" class="input-class" name="zipcode" id="zipcode" placeholder="Enter Zipcode Number" required>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn mt-20" value="Add Location">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-8 p-10">
+                    <h3 class="text-center mt-20">View Location</h3>
+                    <div class="mt-15">
+                        <table class="table" border="1">
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Zipcode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for location in locations %}
+                                <tr>
+                                    <td>{{location['location_name']}}</td>
+                                    <td>{{location['state_name']}}</td>
+                                    <td>{{location['zipcode']}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- <div class="col-3 m-20">
+                    <h3 class="text-center">Add City</h3>
+                    <form class="m-20" action="add_location_action" method="post">
+                        <div class="mt-10">
+                            <label for="location_name">City</label>
+                            <div class="mt-5">
+                                <input type="text" style="padding: 10px;" class="input-class" name="location_name" id="location_name" placeholder="Enter City Name" required>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn mt-20" value="Add City">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-3 m-20">
+                    <h3 class="text-center">Add State</h3>
+                    <form class="m-20" action="add_state_action" method="post">
+                        <div class="mt-10">
+                            <label for="state_name">State</label>
+                            <div class="mt-5">
+                                <input type="text" style="padding: 10px;" class="input-class" name="state_name" id="state_name" placeholder="Enter State Name" required>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn mt-20" value="Add State">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-3 m-20">
+                    <h3 class="text-center">Add Zipcode</h3>
+                    <form class="m-20" action="add_zipcode_action" method="post">
+                        <div class="mt-10">
+                            <label for="zipcode">Zipcode</label>
+                            <div class="mt-5">
+                                <input type="number" style="padding: 10px;" class="input-class" name="zipcode" id="zipcode" placeholder="Enter Zipcode Number" required>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn mt-20" value="Add Zipcode">
+                        </div>
+                    </form>
+                </div> -->
+            </div>
+            <!-- <div class="row">
+                <div class="col-3 m-20">
+                    <h3 class="text-center mt-5">View Cites</h3>
+                    <table border="1" class="table mt-20">
+                        <thead>
+                            <tr>
+                                <th>City</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for location in locations %}
+                            <tr>
+                                <td>{{location['location_name']}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-3 m-20">
+                    <h3 class="text-center mt-5">View States</h3>
+                    <table border="1" class="table mt-20">
+                        <thead>
+                            <tr>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for state in states %}
+                            <tr>
+                                <td>{{state['state_name']}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-3 m-20">
+                    <h3 class="text-center mt-5">View Zipcodes</h3>
+                    <table border="1" class="table mt-20">
+                        <thead>
+                            <tr>
+                                <th>Zipcode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for zipcode in zipcodes %}
+                            <tr>
+                                <td>{{zipcode['zipcode']}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</body>
+</html>

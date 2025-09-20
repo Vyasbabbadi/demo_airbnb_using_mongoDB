@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Payments</title>
+</head>
+<body>
+    {% if session['role']=="Host" %}
+        {% include 'hosts_head.html' %}
+    {% else %}
+        {% include 'customer_head.html' %}
+    {% endif %}
+    <h1 class="text-center mt-30">View Payments</h1>
+
+    <div class="mt-30" style="padding-left: 100px; padding-right: 100px;">
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>Card Holder Name</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments %}
+                <tr>
+                    <td>{{payment['holder_name']}}</td>
+                    <td> $ {{payment['amount']}}</td>
+                    <td>{{payment['date'].strftime("%Y-%m-%d %I:%M %p")}}</td>
+                    <td>{{payment['status']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

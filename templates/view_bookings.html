@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Bookings</title>
+</head>
+{% if session['role']=="Host" %}
+    <body class="body_view_properties">
+{% elif session['role']=="Admin" %}
+        <body class="body_view_bookings">
+{% else %}
+    <body style="background-color: rgb(224, 224, 224);">
+{% endif %}
+    {% if session['role']=="Customer" %}
+        {% include 'customer_head.html' %}
+    {% elif session['role'] == "Host" %}
+        {% include 'hosts_head.html' %}
+    {% else %}
+        {% include 'admin_head.html' %}
+    {% endif %}
+
+    <h1 class="text-center mt-30">View Bookings</h1>
+
+    <div style="padding-left: 100px; padding-right: 100px;">
+    {% if session['role']=="Customer" %}
+        <div class="row">
+            {% for booking in bookings %}
+            {% if booking['status'] != "Payment Pending" %}
+            {% set property = get_property_by_property_id(booking['property_id']) %}
+            {% set customer = get_customer_by_customer_id(booking['customer_id']) %}
+            {% set location = get_location_by_location_id(property['location_id']) %}
+                <div class="col-4">
+                    <div class="card_view_booking p-10" style="height: 530px; background-color: whitesmoke;">
+                        <div class="text-center">
+                            <img src="../static/property_images/{{property['picture_in_property']}}" style="height: 150px;">
+                        </div>
+                        <h4 style="display: inline-block;" class="mt-10 pl-20 text-center">Property Name: </h4> {{property['properties_name']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Location: </h4> {{location['location_name']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Total Price: </h4>$ <a href="view_payments?booking_id={{booking['_id']}}"> {{booking['payable_amount']}}</a> <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Days: </h4> {{booking['days']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Customer Name: </h4> {{customer['first_name']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">CheckIn Date: </h4> {{booking['date_of_checkin'].strftime("%Y-%m-%d %I:%M %p")}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">CheckOut Date: </h4> {{booking['date_of_checkout'].strftime("%Y-%m-%d %I:%M %p")}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Number of Guests: </h4> {{booking['number_of_guest']}} <br>
+                        <div style="padding-left: 20px; padding-right: 20px;">
+                            {% if booking['status'] == "Booked" %}
+                                <div class="text-center">
+                                    <div class="mt-30" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;"> {{booking['status']}}</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6"></div>
+                                    <div class="col-6">
+                                        <a class="submit-btn mt-10" href="/review_bookings?booking_id={{booking['_id']}}">Review</a>
+                                    </div>
+                                </div>
+                            {% elif booking['status'] == "CheckedIn" %}
+                                <div class="text-center">
+                                    <div class="mt-15" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-lightgreen"> {{booking['status']}}</h3>
+                                </div>
+                                <div class="row">
+                                    <a class="submit-btn mt-15" href="/checkout_request?booking_id={{booking['_id']}}">CheckOut Request</a>
+                                </div>
+
+                            {% elif booking['status'] == "Checkout" %}
+                                <div class="text-center">
+                                    <div class="mt-5" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-lightgreen"> {{booking['status']}}</h3>
+                                </div>
+                            {% elif booking['status']=="Extra Charges Paid" %}
+                                <div class="text-center">
+                                    <div class="mt-20" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-lightgreen"> {{booking['status']}}</h3>
+                                </div>
+                            {% else %}
+                                <div class="text-center">
+                                    <div class="mt-60" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-danger"> {{booking['status']}}</h3>
+                                </div>
+                            {% endif %}
+                            {% if booking['status'] != "Cancelled" %}    
+                                <div class="text-center">
+                                    <div class="mt-30 tab_convo"><a class="submit-btn" href="/conversation?booking_id={{booking['_id']}}">Message to Host</a></div>
+                                </div>
+                            {% endif %}
+                            {% if 'extra_charges' in booking%}
+                                {% if int(booking['extra_charges'])>0%}
+                                Extra Charges:  <h4 style="display: inline-block;" class="mt-5 text-center">{{booking['extra_charges']}}</h4>
+                                    {% if booking['status']=='Checkout'%}
+                                        <div class="row">
+                                            <a class="submit-btn mt-5" href="/pay_extra_charges?booking_id={{booking['_id']}}&payable_amount={{booking['extra_charges']}}">Make PAyment</a>
+                                        </div>
+                                    {% endif%}
+                                {% endif%}
+                            {% endif%}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    {% elif session['role'] == "Host" %}
+        <div class="row">
+            {% for booking in bookings %}
+            {% if booking['status'] != "Payment Pending" %}
+            {% set property = get_property_by_property_id(booking['property_id']) %}
+            {% set customer = get_customer_by_customer_id(booking['customer_id']) %}
+            {% set location = get_location_by_location_id(property['location_id']) %}
+                <div class="col-4">
+                    <div class="card_view_booking p-10" style="height: 500px; background-color: whitesmoke;">
+                        <div class="text-center">
+                            <img src="../static/property_images/{{property['picture_in_property']}}" style="height: 150px;">
+                        </div>
+                        <h4 style="display: inline-block;" class="mt-10 pl-20 text-center">Property Name: </h4> {{property['properties_name']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Location: </h4> {{location['location_name']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Total Price: </h4>$ <a href="view_payments?booking_id={{booking['_id']}}"> {{booking['payable_amount']}}</a> <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Days: </h4> {{booking['days']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Customer Name: </h4> {{customer['first_name']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">CheckIn Date: </h4> {{booking['date_of_checkin']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">CheckOut Date: </h4> {{booking['date_of_checkout']}} <br>
+                        <h4 style="display: inline-block;" class="mt-5 pl-20 text-center">Number of Guests: </h4> {{booking['number_of_guest']}} <br>
+                        <div style="padding-left: 20px; padding-right: 20px;">
+                            {% if booking['status'] == "Booked" %}
+                                <div class="text-center">
+                                    <div style="display: inline-block;">Status :  <h4 style="display: inline-block;"> {{booking['status']}}</h4> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6"></div>
+                                    <div class="col-6">
+                                        <a class="submit-btn mt-10" href="/review_bookings?booking_id={{booking['_id']}}">View Review</a>
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-4 m-10">
+                                        <a class="submit-btn" href="/booking_confirm?booking_id={{booking['_id']}}">Check In</a>
+                                    </div>
+                                    <div class="col-1"></div>
+                                    <div class="col-4 m-10">
+                                        <a class="submit-btn" href="/booking_cancel?booking_id={{booking['_id']}}">Cancel</a>
+                                    </div>
+                                </div> -->
+                            {% elif booking['status'] == "Confirmed" %}
+                            <div class="mt-10" style="display: inline-block;">Status : </div> <h4 style="display: inline-block;" class="color-lightgreen"> {{booking['status']}}</h4>
+                            <div class="row">
+                                <div class="col-4 m-20"></div>
+                                <div class="col-4 m-20">
+                                    <a class="submit-btn p-5" href="/booking_cancel?booking_id={{booking['_id']}}">Cancel</a>
+                                </div>
+                            </div>
+                            {% elif booking['status'] == "Checkout Request" %}
+                                <div class="text-center">
+                                    <div class="mt-5" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-danger"> {{booking['status']}}</h3>
+                                </div>
+                                <div class="mt-5">
+                                    <a class="submit-btn p-5" href="/checkout_accept?booking_id={{booking['_id']}}">Accept Request</a>
+                                </div>
+                            {% elif booking['status'] == "CheckedIn" %}
+                                <div class="text-center">
+                                    <div class="mt-20" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-lightgreen"> {{booking['status']}}</h3>
+                                </div>
+                            {% elif booking['status'] == "Checkout" %}
+                                <div class="text-center">
+                                    <div class="mt-20" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-danger"> {{booking['status']}}</h3>
+                                </div>
+                            {% else %}
+                                <div class="text-center">
+                                    <div class="mt-30" style="display: inline-block;">Status : </div> <h3 style="display: inline-block;" class="color-danger"> {{booking['status']}}</h3>
+                                </div>
+                            {% endif %}
+                            {% if booking['status'] != "Cancelled" %}
+                                <div class="text-center">
+                                    <div class="mt-10 tab_convo"><a class="submit-btn mt-5" href="/conversation?booking_id={{booking['_id']}}">Message to Customer</a></div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="p-20">
+            <table border="1" class="table">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Property Location</th>
+                        <th>Host Name</th>
+                        <th>Customer Name</th>
+                        <th>CheckIn Date</th>
+                        <th>CheckOut Date</th>
+                        <th>Number of Guests</th>
+                        <th>Amount Paid</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    {% if booking['status'] != "Payment Pending" %}
+                    {% set property = get_property_by_property_id(booking['property_id']) %}
+                    {% set customer = get_customer_by_customer_id(booking['customer_id']) %}
+                    {% set location = get_location_by_location_id(property['location_id']) %}
+                    {% set host = get_host_by_host_id(property['host_id']) %}
+                    <tr>
+                        <td>{{property['properties_name']}}</td>
+                        <td>{{location['location_name']}}</td>
+                        <td>{{host['first_name']}}</td>
+                        <td>{{customer['first_name']}}</td>
+                        <td>{{booking['date_of_checkin'].strftime("%Y-%m-%d %I:%M %p")}}</td>
+                        <td>{{booking['date_of_checkout'].strftime("%Y-%m-%d %I:%M %p")}}</td>
+                        <td>{{booking['number_of_guest']}}</td>
+                        <td>{{booking['payable_amount']}}</td>
+                        <td> 
+                            {% if booking['status'] == "CheckedIn" %}
+                                <div class="color-lightgreen">{{booking['status']}}</div>
+                            {% elif booking['status'] == "Cancelled" %}
+                                <div class="color-danger">{{booking['status']}}</div>
+                            {% elif booking['status'] == "Checkout" %}
+                                <div class="color-danger">{{booking['status']}}</div>
+                            {% else %}
+                                <div style="font-weight: bold;">{{booking['status']}}</div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    </div>
+</body>
+</html>

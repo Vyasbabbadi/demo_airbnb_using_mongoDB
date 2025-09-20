@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+</head>
+<body class="body_booking">
+    {% include 'customer_head.html' %}
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-4 mt-80">
+            <div class="card_view">
+                <div class="p-20">
+                    <h2 class="text-center" >
+                        Reservation
+                    </h2>
+                    <form action="add_booking_action" method="post">
+                        <input type="hidden" value="{{property_id}}" name="property_id" id="property_id">
+                        <input type="hidden" value="{{host_id}}" name="host_id" id="host_id">
+                        <input type="hidden" value="{{amount}}" name="amount" id="amount">   
+                        <div class="mt-10">
+                            <label for="date_of_checkin">Check In Date</label>
+                            <div class="mt-5 ">
+                                <input type="datetime-local" min="{{date}}" class="input-class" name="date_of_checkin" id="date_of_checkin" required>
+                            </div>
+                        </div>             
+                        <div class="mt-10">
+                            <label for="date_of_checkout">Check Out Date</label>
+                            <div class="mt-5 ">
+                                <input type="datetime-local" min="{{date}}" class="input-class" name="date_of_checkout" id="date_of_checkout" required>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <label for="number_of_guest">Number of Guests</label>
+                            <div class="mt-5 ">
+                                <input type="number" class="input-class" name="number_of_guest" id="number_of_guest" placeholder="Enter Number of Guests" required>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn p-5 mt-20" value="Make Payment">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>
+</html>

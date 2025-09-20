@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+    {% include 'hosts_head.html' %}
+    <h1 class="mt-30 text-center">CheckOut Page</h1>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 mt-30">
+            <div class="card_plain p-20">
+                <form action="check_out_action" method="post">
+                    <input type="hidden" name="booking_id" id="booking_id" value="{{booking_id}}">
+                    <div class="mt-10">
+                        <label for="extra_charges">Extra Charges</label>
+                        <div class="mt-10">
+                            <input type="number" class="input-class" style="padding: 10px;" name="extra_charges" id="extra_charges" value="0">
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" class="submit-btn mt-20" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>
+</html>

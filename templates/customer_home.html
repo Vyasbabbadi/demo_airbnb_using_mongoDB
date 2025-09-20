@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Home</title>
+</head>
+<body class="body_customer_home">
+    {% include 'customer_head.html' %}
+
+    <h1 class="mt-100" style="padding-left: 400px;">Welcome {{session['name']}}!</h1>
+        <div class="row mt-10">
+            <div class="col-3"></div>
+            <div class="col-6 p-20">
+                    <h1 class="color-primary text-center mt-10">About Us</h1>
+                    <p class="color-gray text-justify mt-20" style="font-size:1.1em;">
+                        <span class="color-primary"><b>Airbnb</b></span> connects travelers with unique stays for memorable experiences. We strive to make travel accessible and comfortable, offering a home away from home.  Our commitment to authenticity and innovation ensures seamless bookings and extraordinary stays. We're proud to connect guests and hosts in a vibrant community.  <span class="color-secondary"><b>Book direct. Stay unique. Experience more.</b></span>
+                    </p>
+            </div>
+            <div class="col-3"></div>
+        </div>
+</body>
+</html>

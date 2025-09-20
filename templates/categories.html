@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+</head>
+<body class="body_view_bookings">
+    {% include 'admin_head.html' %}
+    <h1 class="text-center mt-30">Category</h1>
+    <div class="mt-30">
+        <div class="card_plain">
+            <div class="row">
+                <div class="col-4 m-20">
+                    <h3 class="text-center">Add Category</h3>
+                    <form class="m-20" action="add_category_action" method="post">
+                        <div class="mt-10">
+                            <label for="category">Category</label>
+                            <div class="mt-10">
+                                <input type="text" class="input-class" style="padding: 10px;" name="category" id="category" placeholder="Enter Category Name" required>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="submit-btn mt-20" value="Add Category">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-3 p-10 m-40">
+                    <h3 class="text-center mt-5">View Categories</h3>
+                    <table border="1" class="table mt-20">
+                        <thead>
+                            <tr>
+                                <th>Categories</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for category in categories %}
+                            <tr>
+                                <td>{{category['categories_name']}}</td>
+                                <td><a href="/update_category?category_id={{category['_id']}}">Update</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Properties Host Registration</title>
+</head>
+<body  class="body_customer_registration">
+    {% include 'head.html' %}
+    <div class="row">
+        <div class="col-6 mt-120">
+            <div class="card p-20" style="background-color: rgba(152, 224, 255, 0.3);">
+                <div class="mt-5 text-center">
+                    <h2>Properties Host Registration</h2>
+                </div>
+                <form action="host_registration_action" method="post">
+                    <div class="row">
+                        <div class="col-6 p-10">
+                            <div class="mt-10">
+                                <label for="host_first_name">First Name</label>
+                                <div class="mt-5">
+                                    <input type="text" class="input-class" name="host_first_name" id="host_first_name" placeholder="Enter First Your Name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 p-10">
+                            <div class="mt-10">
+                                <label for="host_last_name">Last Name</label>
+                                <div class="mt-5">
+                                    <input type="text" class="input-class" name="host_last_name" id="host_last_name" placeholder="Enter Last Your Name" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 p-10">
+                            <div>
+                                <label for="email">Email</label>
+                                <div class="mt-5 ">
+                                    <input type="text" class="input-class" name="email" id="email" placeholder="Enter Email Id" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 p-10">
+                            <div>
+                                <label for="phone">Phone</label>
+                                <div class="mt-5">
+                                    <input type="number" class="input-class" name="phone" id="phone" maxlength="10" placeholder="Enter Your Phone Number" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <label for="password">Password</label>
+                        <div class="mt-5">
+                            <input type="password" class="input-class" name="password" id="password" placeholder="Enter Password" required>
+                    </div>
+                    <div class="mt-10">
+                        <label for="confirm_password">Confirm Password</label>
+                        <div class="mt-5">
+                            <input type="password" class="input-class" name="confirm_password" id="confirm_password" placeholder="Confirm Your Password" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="submit" class="submit-btn p-5 mt-20" value="Register">
+                        </div>
+                    </div>
+                </form>
+                <div class="mt-10 text-center">
+                    Have an account? <a class="color-primary" style="font-weight: bold; font-size: 18px;" href="host_login">Login Here!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>
+</html>

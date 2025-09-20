@@ -1,0 +1,14 @@
+{% include 'link.html' %}
+
+<nav class="row nav p-10">
+    <div class="col-4 row">
+        <a href="/logout" style="padding-left: 50px;"><img src="../static/images/logo.png" alt="logo" height="40px"></a>
+    </div>
+    <div class="row col-4">
+        <div class="col-3 text-center mt-10"><a class="nav-items {% if request.path == '/' %}active{% endif %}" href="/">Home</a></div>
+        <div class="col-3 text-center mt-10"><a class="nav-items {% if request.path == '/admin_login' %}active{% endif %}" href="/admin_login">Admin</a></div>
+        <div class="col-3 text-center mt-10"><a class="nav-items {% if request.path == '/host_login' %}active{% elif request.path == '/host_registration' %}active{% endif %}" href="/host_login">Host</a></div>
+        <div class="col-3 text-center mt-10"><a class="nav-items {% if request.path == '/customer_login' %}active{% elif request.path == '/customer_registration' %}active{% endif %}" href="/customer_login">Customer</a></div>
+    </div>
+    <div class="col-4"></div>
+</nav>
