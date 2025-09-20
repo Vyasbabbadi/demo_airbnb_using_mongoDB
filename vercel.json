@@ -11,5 +11,13 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ]
+  ],
+  "env": {
+    "FLASK_ENV": "production"
+  },
+  "functions": {
+    "main.py": {
+      "maxDuration": 10
+    }
+  }
 }
